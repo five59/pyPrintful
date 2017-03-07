@@ -2,7 +2,7 @@
 PyPrintful
 ==========
 
-PyPrintful is a simple Python3-compatible interface to the [Printful API](http://api.printful.com/).
+PyPrintful is a simple Python3-compatible interface to the (Printful API)[http://api.printful.com/].
 
 
 Quick start
