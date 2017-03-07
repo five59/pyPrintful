@@ -14,3 +14,31 @@ Documentation
 -------------
 
 Documentation is available at <http://pyprintful.readthedocs.io/>.
+
+.. image:: https://readthedocs.org/projects/pyprintful/badge/?version=latest
+   :target: http://pyprintful.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+
+.. image:: https://travis-ci.org/559Labs/pyPrintful.svg?branch=master
+   :target: https://travis-ci.org/559Labs/pyPrintful
+   :alt: Travis CI Status
+
+.. image:: https://codeclimate.com/github/559Labs/pyPrintful/badges/gpa.svg
+  :target: https://codeclimate.com/github/559Labs/pyPrintful
+  :alt: Code Climate
+
+.. image:: https://codeclimate.com/github/559Labs/pyPrintful/badges/issue_count.svg
+   :target: https://codeclimate.com/github/559Labs/pyPrintful
+   :alt: Issue Count
+
+.. image:: https://img.shields.io/github/forks/559labs/pyPrintful.svg
+   :target: https://github.com/559labs/pyPrintful/network
+   :alt: GitHub Forks
+
+.. image:: https://img.shields.io/github/stars/559labs/pyPrintful.svg
+   :target: https://github.com/559Labs/pyPrintful/stargazers
+   :alt: GitHub Stars
+
+.. image:: https://img.shields.io/badge/license-Apache%202-blue.svg
+   :target: https://www.apache.org/licenses/LICENSE-2.0
+   :alt: License: Apache
