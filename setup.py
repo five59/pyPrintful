@@ -21,7 +21,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.0.0a1',
+    version='1.0.0a2',
 
     description='A Python3 wrapper for the Printful.com API.',
     long_description=long_description,
@@ -41,7 +41,7 @@ setup(
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Framework :: Django',
-        'Framework :: Django :: 1.10'
+        'Framework :: Django :: 1.10',
         'Intended Audience :: Developers',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development :: Libraries',
