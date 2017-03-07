@@ -52,17 +52,20 @@ class pyPrintful:
         """
         Get all product list
         """
-        raise NotImplementedError()
+        return self.do_get('products')
 
     def get_variant_info(self, pk=None):
         """
         Get info about a variant
+
+        :param pk: The Printful identifier for the variant.
         """
         raise NotImplementedError()
 
     def get_product_info(self, pk=None):
         """
-        Get product’s variant list
+        Get product's variant list
+        :param pk: The Printful identifier for the variant.
         """
         raise NotImplementedError()
 
@@ -70,7 +73,7 @@ class pyPrintful:
         """
         Get order list
         """
-        raise NotImplementedError()
+        return self.do_get('orders')
 
     def put_order_new(self):
         """
@@ -106,7 +109,7 @@ class pyPrintful:
         """
         Get list of files
         """
-        raise NotImplementedError()
+        return self.do_get('files')
 
     def put_file_new(self):
         """
@@ -130,7 +133,7 @@ class pyPrintful:
         """
         Get list of sync products
         """
-        raise NotImplementedError()
+        return self.do_get('sync/products')
 
     def get_syncproduct_info(self, pk=None):
         """
@@ -154,13 +157,13 @@ class pyPrintful:
         """
         Retrieve country list
         """
-        raise NotImplementedError()
+        return self.do_get('countries')
 
     def get_tax_geos(self):
         """
         Retrieve state list that requires state tax calc
         """
-        raise NotImplementedError()
+        return self.do_get('tax/rates')
 
     def get_tax_calc(self):
         """
@@ -172,7 +175,7 @@ class pyPrintful:
         """
         Get webhook configuration
         """
-        raise NotImplementedError()
+        return self.do_get('webhooks')
 
     def put_webhooks_update(self):
         """
