@@ -1,8 +1,5 @@
-pyPrintful package
-==================
-
-Module contents
----------------
+pyPrintful Module
+=================
 
 .. automodule:: pyPrintful
     :members:

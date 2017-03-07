@@ -10,6 +10,9 @@ Welcome to pyPrintful's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   modules
+   
+
 Indices and tables
 ==================
 
