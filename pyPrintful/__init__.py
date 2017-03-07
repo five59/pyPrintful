@@ -65,6 +65,7 @@ class pyPrintful:
     def get_product_info(self, pk=None):
         """
         Get product's variant list
+
         :param pk: The Printful identifier for the variant.
         """
         raise NotImplementedError()
