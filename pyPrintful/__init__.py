@@ -9,8 +9,10 @@ class pyPrintful:
     """
     Printful API class. Initializes the connection to the API server.
 
-    :param ck: Consumer Key.
-    :param cs: Consumer Secret.
+    :param key: API Key (Get it from your store's dashboard). Note that this
+        is not the consumer key and secret found under store info. Rather,
+        the API key can be found under Store > API and will be two strings
+        separated by a ':'.
     :returns: A stateful object with an authenticated connection.
     """
     VERSION = "1.0.0a3"
@@ -21,26 +23,26 @@ class pyPrintful:
         'auth': None,
         'last_response': None,
         'last_response_raw': None,
-        'consumer_key': None,
-        'consumer_secret': None,
+        'auth_user': None,
+        'auth_pass': None,
     }
 
-    def __init__(self, ck=None, cs=None, connect=True):
-        if not (ck and cs):
+    def __init__(self, key=None, connect=True):
+        if not key:
             raise pfException("Please provide a valid API Key.")
-        self._store.consumer_key = ck
-        self._store.consumer_secret = cs
+
+        self._store['auth_user'], self._store['auth_pass'] = key.split(
+            ':')
         if connect:
             self.connect()
-        return True
 
     def connect(self):
-        self._store.connection = requests.Session()
-        self._store.connection.auth = HTTPBasicAuth(
-            self._store.consumer_key, self._store.consumer_secret)
-        self._store.connection.headers['User-Agent'] = "pyPrintful (Printful API Wrapper for Python 3)"
-        self._store.connection.headers['Content-Type'] = 'application/json'
-        return True
+        self._store['connection'] = requests.Session()
+        self._store['connection'].auth = HTTPBasicAuth(
+            self._store['auth_user'], self._store['auth_pass'])
+        self._store['connection'].headers[
+            'User-Agent'] = "pyPrintful (Printful API Wrapper for Python 3)"
+        self._store['connection'].headers['Content-Type'] = 'application/json'
 
     def get_product_list(self):
         """Get all product list"""
@@ -121,7 +123,7 @@ class pyPrintful:
         raise NotImplementedError()
 
     def get_store_info(self):
-        raise NotImplementedError()
+        return self.do_get('store')
 
     def put_store_packingslip(self):
         raise NotImplementedError()
@@ -129,8 +131,8 @@ class pyPrintful:
     def get_item_count(self):
         # Returns total available item count from the last request if it supports
         # paging (e.g order list) or nil otherwise
-        if(self._store.last_response and 'paging' in self._store.last_response):
-            return self._store.last_response['paging']['total']
+        if(self._store['last_response'] and 'paging' in self._store['last_response']):
+            return self._store['last_response']['paging']['total']
         else:
             None
 
@@ -163,15 +165,15 @@ class pyPrintful:
     def __request(self, method, path, params=None, data=None):
         # Internal generic request wrapper
 
-        self._store.last_response = None
-        self._store.last_response_raw = None
+        self._store['last_response'] = None
+        self._store['last_response_raw'] = None
 
         # Allow full URIs in requests. If only providing the route/endpoint, then
         # pre-pend the base_url.
         if path.startswith('http'):
             url = path
         else:
-            url = self._store.base_url + path
+            url = self._store['base_url'] + path
 
         if(params):
             url += "?" + urlencode(params)
@@ -183,23 +185,23 @@ class pyPrintful:
 
         # Make the request
         try:
-            request = self._store.connection.request(
+            request = self._store['connection'].request(
                 method,
                 url,
                 data=body,
             )
-            self._store.last_response_raw = request
+            self._store['last_response_raw'] = request
         except Exception as e:
             raise wcException('API request failed: %s' % e)
 
-        if (self._store.last_response_raw.status_code < 200 or self._store.last_response_raw.status_code >= 300):
+        if (self._store['last_response_raw'].status_code < 200 or self._store['last_response_raw'].status_code >= 300):
             raise pfException('Invalid API response')
 
         # Now try to decode everything.
         try:
             data = json.loads(
-                self._store.last_response_raw.content.decode('utf-8'))
-            self._store.last_response = data
+                self._store['last_response_raw'].content.decode('utf-8'))
+            self._store['last_response'] = data
         except ValueError as e:
             raise pfException('API response was not valid JSON.')
 
