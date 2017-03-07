@@ -1,4 +1,4 @@
-from . import pfException
+from .pfException import pfException
 
 
 class pfAPIException(pfException):
