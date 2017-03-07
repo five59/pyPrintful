@@ -15,6 +15,7 @@ class pyPrintful:
         separated by a ':'.
     :returns: A stateful object with an authenticated connection.
     """
+
     VERSION = "1.0.0a3"
 
     _store = {
@@ -37,6 +38,9 @@ class pyPrintful:
             self.connect()
 
     def connect(self):
+        """
+        Configures the connection to the remote server.
+        """
         self._store['connection'] = requests.Session()
         self._store['connection'].auth = HTTPBasicAuth(
             self._store['auth_user'], self._store['auth_pass'])
@@ -45,131 +49,217 @@ class pyPrintful:
         self._store['connection'].headers['Content-Type'] = 'application/json'
 
     def get_product_list(self):
-        """Get all product list"""
+        """
+        Get all product list
+        """
         raise NotImplementedError()
 
     def get_variant_info(self, pk=None):
-        """Get info about a variant"""
+        """
+        Get info about a variant
+        """
         raise NotImplementedError()
 
     def get_product_info(self, pk=None):
-        """Get product’s variant list"""
+        """
+        Get product’s variant list
+        """
         raise NotImplementedError()
 
     def get_order_list(self):
-        """Get order list"""
+        """
+        Get order list
+        """
         raise NotImplementedError()
 
     def put_order_new(self):
-        """Create new order"""
+        """
+        Create new order
+        """
         raise NotImplementedError()
 
     def get_order_info(self, pk=None):
-        """Get order data"""
+        """
+        Get order data
+        """
         raise NotImplementedError()
 
     def put_order_cancel(self, pk=None):
-        """Cancel an order"""
+        """
+        Cancel an order
+        """
         raise NotImplementedError()
 
     def put_order_update(self, pk=None):
-        """Update order data"""
+        """
+        Update order data
+        """
         raise NotImplementedError()
 
     def put_order_confirm(self, pk=None):
-        """Confirm draft for fulfillment"""
+        """
+        Confirm draft for fulfillment
+        """
         raise NotImplementedError()
 
     def get_file_list(self):
+        """
+        Get list of files
+        """
         raise NotImplementedError()
 
     def put_file_new(self):
+        """
+        Add new file
+        """
         raise NotImplementedError()
 
     def get_file_info(self, pk=None):
+        """
+        Get file info
+        """
         raise NotImplementedError()
 
     def get_shippingrate_calc(self):
+        """
+        Calculate shipping rates
+        """
         raise NotImplementedError()
 
     def get_syncproduct_list(self):
+        """
+        Get list of sync products
+        """
         raise NotImplementedError()
 
     def get_syncproduct_info(self, pk=None):
+        """
+        Get info about sync product
+        """
         raise NotImplementedError()
 
     def put_syncproduct_remove(self, pk=None):
+        """
+        Unlink all synced variants of this product
+        """
         raise NotImplementedError()
 
     def get_syncvariant_info(self, pk=None):
+        """
+        Get info about sync variant
+        """
         raise NotImplementedError()
 
     def get_countries_list(self):
+        """
+        Retrieve country list
+        """
         raise NotImplementedError()
 
     def get_tax_geos(self):
+        """
+        Retrieve state list that requires state tax calc
+        """
         raise NotImplementedError()
 
     def get_tax_calc(self):
+        """
+        Calculate tax rate
+        """
         raise NotImplementedError()
 
     def get_webhooks_info(self):
+        """
+        Get webhook configuration
+        """
         raise NotImplementedError()
 
     def put_webhooks_update(self):
+        """
+        Set up webhook configuration
+        """
         raise NotImplementedError()
 
     def put_webhooks_disable(self):
+        """
+        Disable webhook support
+        """
         raise NotImplementedError()
 
     def get_store_info(self):
+        """
+        Get store info
+        """
         return self.do_get('store')
 
     def put_store_packingslip(self):
+        """
+        Change store packing slip
+        """
         raise NotImplementedError()
 
     def get_item_count(self):
-        # Returns total available item count from the last request if it supports
-        # paging (e.g order list) or nil otherwise
+        """
+        Returns total available item count from the last request if it supports
+        paging (e.g order list) or nil otherwise
+        """
         if(self._store['last_response'] and 'paging' in self._store['last_response']):
             return self._store['last_response']['paging']['total']
         else:
             None
 
     def do_get(self, path, params=None):
-        # Perform a GET request to the API
-        # path - Request path (e.g. 'orders' or 'orders/123')
-        # params - Additional GET parameters as a dictionary
+        """
+        Perform a GET request to the API
+
+        :param path: Request path (e.g. 'orders' or 'orders/123')
+        :param params: Additional GET parameters as a dictionary
+        """
         return self.__request('GET', path, params)
 
     def do_delete(self, path, params=None):
-        # Perform a DELETE request to the API
-        # path - Request path (e.g. 'orders' or 'orders/123')
-        # params - Additional GET parameters as a dictionary
+        """
+        Perform a DELETE request to the API
+
+        :param path: Request path (e.g. 'orders' or 'orders/123')
+        :param params: Additional GET parameters as a dictionary
+        """
         return self.__request('DELETE', path, params)
 
     def do_post(self, path, data=None, params=None):
-        # Perform a POST request to the API
-        # path - Request path (e.g. 'orders' or 'orders/123')
-        # data - Request body data as a dictionary
-        # params - Additional GET parameters as a dictionary
+        """
+        Perform a POST request to the API
+
+        :param path: Request path (e.g. 'orders' or 'orders/123')
+        :param data: Request body data as a dictionary
+        :param params: Additional GET parameters as a dictionary
+        """
         return self.__request('POST', path, params, data)
 
     def do_put(self, path, data=None, params=None):
-        # Perform a PUT request to the API
-        # path - Request path (e.g. 'orders' or 'orders/123')
-        # data - Request body data as a dictionary
-        # params - Additional GET parameters as a dictionary
+        """
+        Perform a PUT request to the API
+
+        :param path: Request path (e.g. 'orders' or 'orders/123')
+        :param data: Request body data as a dictionary
+        :param params: Additional GET parameters as a dictionary
+        """
         return self.__request('PUT', path, params, data)
 
     def __request(self, method, path, params=None, data=None):
-        # Internal generic request wrapper
+        """
+        Internal generic request wrapper
 
+        :param method:
+        :param path:
+        :param params:
+        :param data:
+        """
         self._store['last_response'] = None
         self._store['last_response_raw'] = None
 
-        # Allow full URIs in requests. If only providing the route/endpoint, then
-        # pre-pend the base_url.
+        # Allow full URIs in requests. If only providing the route/endpoint,
+        # then pre-pend the base_url.
         if path.startswith('http'):
             url = path
         else:
