@@ -42,3 +42,9 @@ Documentation is available at <http://pyprintful.readthedocs.io/>.
 .. image:: https://img.shields.io/badge/license-Apache%202-blue.svg
    :target: https://www.apache.org/licenses/LICENSE-2.0
    :alt: License: Apache
+
+Acknowledgements
+----------------
+The original code from which this package is derrived is copyright 2014,
+`Idea Bits LLC <http://ideabits.com>`_, and is available on their
+`API documentation site <https://www.printful.com/docs/libraries>`_.
