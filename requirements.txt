@@ -13,7 +13,7 @@ pathtools==0.1.2
 pkginfo==1.4.1
 port-for==0.3.1
 Pygments==2.2.0
--e git+https://github.com/559Labs/pyPrintful.git@8559399e037015ef1e62d3f8e76df8026497f8b9#egg=PyPrintful
+-e git+https://github.com/559Labs/pyPrintful.git@2b499de159be033eea5f3a741a1ec7fac95a31ef#egg=PyPrintful
 pytz==2016.10
 PyYAML==3.12
 requests==2.13.0
