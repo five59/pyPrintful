@@ -16,7 +16,7 @@ class pyPrintful:
     :returns: A stateful object with an authenticated connection.
     """
 
-    VERSION = "1.0.0a5"
+    VERSION = "1.0.0a6"
 
     _store = {
         'base_url': 'https://api.printful.com/',
@@ -196,11 +196,11 @@ class pyPrintful:
         """
         return self.do_get('store')
 
-    def put_store_packingslip(self):
+    def put_store_packingslip(self, data=None):
         """
         Change store packing slip
         """
-        raise NotImplementedError()
+        return self.do_post('store/packing-slip', data=data)
 
     def get_item_count(self):
         """
@@ -246,7 +246,7 @@ class pyPrintful:
 
         :param path: Request path (e.g. 'orders' or 'orders/123')
         :param data: Request body data as a dictionary
-        :param params: Additional GET parameters as a dictionary
+        :param params: Additional PUT parameters as a dictionary
         """
         return self.__request('PUT', path, params, data)
 
