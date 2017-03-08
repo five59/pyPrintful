@@ -4,6 +4,7 @@ pyPrintful Documentation
 .. toctree::
    :maxdepth: 2
 
+   quickstart
    developer/contributing
    modules
 

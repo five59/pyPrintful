@@ -17,8 +17,8 @@ that available. To set up everyting else, do the following:
   $ pip install -r requirements.txt
 
 
-Build Documentation
--------------------
+Build the Documentation
+-----------------------
 
 If you set up your project as described above, you should have Sphinx commands
 available. So, do the following from the project root folder:
