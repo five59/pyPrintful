@@ -1,6 +1,8 @@
-alabaster==0.7.10
 argh==0.26.2
 args==0.1.0
+requests==2.13.0
+requests-toolbelt==0.7.1
+pytz==2016.10
 Babel==2.3.4
 clint==0.5.1
 docutils==0.13.1
@@ -13,11 +15,7 @@ pathtools==0.1.2
 pkginfo==1.4.1
 port-for==0.3.1
 Pygments==2.2.0
--e git+https://github.com/559Labs/pyPrintful.git@2b499de159be033eea5f3a741a1ec7fac95a31ef#egg=PyPrintful
-pytz==2016.10
 PyYAML==3.12
-requests==2.13.0
-requests-toolbelt==0.7.1
 six==1.10.0
 snowballstemmer==1.2.1
 Sphinx==1.5.3
