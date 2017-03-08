@@ -76,11 +76,11 @@ class pyPrintful:
         """
         return self.do_get('orders')
 
-    def put_order_new(self):
+    def put_order_new(self, data=None):
         """
         Create new order
         """
-        raise NotImplementedError()
+        return self.do_post("orders", data=data)
 
     def get_order_info(self, pk=None):
         """
@@ -92,19 +92,19 @@ class pyPrintful:
         """
         Cancel an order
         """
-        raise NotImplementedError()
+        return self.do_delete("orders/" + pk)
 
-    def put_order_update(self, pk=None):
+    def put_order_update(self, pk=None, data=None):
         """
         Update order data
         """
-        raise NotImplementedError()
+        return self.do_put("orders/" + pk, data=data)
 
     def put_order_confirm(self, pk=None):
         """
         Confirm draft for fulfillment
         """
-        raise NotImplementedError()
+        return self.do_post('orders/' + pk + "/confirm")
 
     def get_file_list(self):
         """
@@ -112,11 +112,11 @@ class pyPrintful:
         """
         return self.do_get('files')
 
-    def put_file_new(self):
+    def put_file_new(self, data):
         """
         Add new file
         """
-        raise NotImplementedError()
+        return self.do_post('/files', data=data)
 
     def get_file_info(self, pk=None):
         """
@@ -124,11 +124,11 @@ class pyPrintful:
         """
         return self.do_get('files/' + pk)
 
-    def get_shippingrate_calc(self):
+    def get_shippingrate_calc(self, data):
         """
         Calculate shipping rates
         """
-        raise NotImplementedError()
+        return self.do_post("shipping/rates", data=data)
 
     def get_syncproduct_list(self):
         """
@@ -146,13 +146,13 @@ class pyPrintful:
         """
         Unlink all synced variants of this product
         """
-        raise NotImplementedError()
+        return self.do_delete('sync/products/' + pk)
 
     def get_syncvariant_info(self, pk=None):
         """
         Get info about sync variant
         """
-        raise NotImplementedError()
+        return self.do_get('sync/variant/' + pk)
 
     def get_countries_list(self):
         """
@@ -166,11 +166,11 @@ class pyPrintful:
         """
         return self.do_get('tax/rates')
 
-    def get_tax_calc(self):
+    def get_tax_calc(self, data=None):
         """
         Calculate tax rate
         """
-        raise NotImplementedError()
+        return self.do_post("tax/rates", data=data)
 
     def get_webhooks_info(self):
         """
@@ -178,17 +178,18 @@ class pyPrintful:
         """
         return self.do_get('webhooks')
 
-    def put_webhooks_update(self):
+    def put_webhooks_update(self, data=None):
         """
         Set up webhook configuration
         """
-        raise NotImplementedError()
+        return self.do_post("webhooks", data=data)
 
     def put_webhooks_disable(self):
         """
-        Disable webhook support
+        Disable webhook support. No data param, because the API doesn't
+        require it.
         """
-        raise NotImplementedError()
+        return self.do_delete("webhooks")
 
     def get_store_info(self):
         """
