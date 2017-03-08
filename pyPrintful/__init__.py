@@ -16,7 +16,7 @@ class pyPrintful:
     :returns: A stateful object with an authenticated connection.
     """
 
-    VERSION = "1.0.0a6"
+    VERSION = "1.0.0"
 
     _store = {
         'base_url': 'https://api.printful.com/',

@@ -9,7 +9,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='PyPrintful',
-    version='1.0.0a6',
+    version='1.0.0',
     description='A Python3 wrapper for the Printful.com API.',
     long_description=long_description,
     url='https://github.com/559Labs/pyPrintful',
@@ -17,7 +17,7 @@ setup(
     author_email='hello@559labs.com',
     license='Apache',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Framework :: Django',
         'Framework :: Django :: 1.10',
