@@ -60,7 +60,7 @@ class pyPrintful:
 
         :param pk: The Printful identifier for the variant.
         """
-        raise NotImplementedError()
+        return self.do_get('products/variant/' + pk)
 
     def get_product_info(self, pk=None):
         """
@@ -68,7 +68,7 @@ class pyPrintful:
 
         :param pk: The Printful identifier for the variant.
         """
-        raise NotImplementedError()
+        return self.do_get('products/' + pk)
 
     def get_order_list(self):
         """
@@ -86,7 +86,7 @@ class pyPrintful:
         """
         Get order data
         """
-        raise NotImplementedError()
+        return self.do_get('orders/' + pk)
 
     def put_order_cancel(self, pk=None):
         """
@@ -122,7 +122,7 @@ class pyPrintful:
         """
         Get file info
         """
-        raise NotImplementedError()
+        return self.do_get('files/' + pk)
 
     def get_shippingrate_calc(self):
         """
@@ -140,7 +140,7 @@ class pyPrintful:
         """
         Get info about sync product
         """
-        raise NotImplementedError()
+        return self.do_get('sync/products/' + pk)
 
     def put_syncproduct_remove(self, pk=None):
         """
