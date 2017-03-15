@@ -5,8 +5,11 @@ pyPrintful Documentation
    :maxdepth: 2
 
    quickstart
+   vocab-highlevel
+   vocab-lowerlevel
    developer/contributing
    modules
+
 
 Indices and Tables
 ==================
